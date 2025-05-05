@@ -12,13 +12,13 @@ This repository contains the implementation and results of a project focused on 
 
 ### Generator Architecture
 
-![Generator Architecture](images/generator_architecture.png)
+![Generator Architecture](images/generator.png)
 
 The generator uses an encoder-decoder network with skip connections (similar to U-Net) to translate SAR inputs into RGB outputs.
 
 ### Discriminator Architecture
 
-![Discriminator Architecture](images/discriminator_architecture.png)
+![Discriminator Architecture](images/Discriminator.png)
 
 The discriminator is a CNN that evaluates whether the generated image is realistic, conditioned on the SAR input.
 
@@ -41,7 +41,7 @@ The discriminator is a CNN that evaluates whether the generated image is realist
 
 ## 📈 Performance Comparison
 
-![Performance Comparison](images/performance_comparison_table.png)
+![Performance Comparison](images/performance_comparison.png)
 
 The proposed GAN-based method outperformed traditional methods and CNN-based baselines in all major quality metrics.
 
@@ -49,7 +49,7 @@ The proposed GAN-based method outperformed traditional methods and CNN-based bas
 
 ### Sample Input vs Output Images
 
-![Sample Images](images/sample_results.png)
+![Sample Images](images/sample_images.png)
 
 ### SAR Image Colorization Examples
 
