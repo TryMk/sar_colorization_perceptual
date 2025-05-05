@@ -1,53 +1,62 @@
-# GAN-Based Re-colorization of SAR Grayscale Images
+# 🌈 GAN-Based Re-colorization of SAR Grayscale Images
 
-This repository contains the implementation and results of a project focused on the re-colorization of Synthetic Aperture Radar (SAR) grayscale images using a GAN (Generative Adversarial Network). This project leverages a conditional GAN (cGAN) architecture trained on paired optical and SAR data to reconstruct colorized versions of SAR images.
+This repository presents a Conditional GAN (cGAN) approach for translating grayscale Synthetic Aperture Radar (SAR) images into realistic RGB images. Leveraging perceptual loss functions and a U-Net-based generator, the model aims to enhance the visual interpretability of SAR data.
 
-## 🌟 Project Objectives
+## 📁 Repository Structure
+
+- `cGAN_004_train_perceptual_loss.ipynb`: Notebook for training the cGAN model with perceptual loss.
+- `cGAN_004_test_cleared.ipynb`: Notebook for testing the trained model on SAR images.
+- `cGAN_004_test_metrics.csv`: Contains evaluation metrics like PSNR, SSIM, and LPIPS.
+- `cGAN_004_test_results.pdf`: Visual results comparing original and colorized images.
+- `GAN_based_re_colorization_of_SAR_grayscale_images.pdf`: Detailed project report.
+- `images/`: Directory containing architecture diagrams and sample results.
+
+## 🎯 Project Objectives
 
 - Translate grayscale SAR images into realistic RGB representations.
-- Utilize GANs to learn the complex mapping between SAR and optical domains.
-- Evaluate and compare results with traditional and other deep learning methods.
+- Employ cGANs to learn the mapping between SAR and optical domains.
+- Evaluate performance using metrics such as PSNR, SSIM, and LPIPS.
 
-## 🧠 Architecture Overview
+## 🧠 Model Architecture
 
-### Generator Architecture
+### Generator
 
 ![Generator Architecture](images/generator.png)
 
-The generator uses an encoder-decoder network with skip connections (similar to U-Net) to translate SAR inputs into RGB outputs.
+The generator utilizes a U-Net architecture with skip connections to preserve spatial information during translation.
 
-### Discriminator Architecture
+### Discriminator
 
 ![Discriminator Architecture](images/Discriminator.png)
 
-The discriminator is a CNN that evaluates whether the generated image is realistic, conditioned on the SAR input.
+A PatchGAN discriminator is employed to assess the realism of the generated images at the patch level.
 
-## 🔍 Dataset
+## 🗂️ Dataset
 
-- Source: Sentinel-1 (SAR) and Sentinel-2 (Optical) satellite images.
-- Preprocessing steps included:
-  - Patch extraction (128×128)
-  - Min-max normalization
-  - Data augmentation (flipping and rotation)
+- **Source**: Sentinel-1 (SAR) and Sentinel-2 (Optical) satellite images.
+- **Preprocessing**:
+  - Extracted 128×128 patches.
+  - Applied min-max normalization.
+  - Performed data augmentation (flipping and rotation).
 
 ## 🏋️ Training Details
 
-- Framework: TensorFlow / Keras
-- Loss Function: Conditional GAN loss + L1 Loss
-- Optimizer: Adam
-- Epochs: 100
-- Batch Size: 16
-- Evaluation Metrics: PSNR, SSIM, RMSE, UQI, ERGAS
+- **Framework**: TensorFlow / Keras
+- **Loss Functions**: Conditional GAN loss combined with L1 and perceptual losses.
+- **Optimizer**: Adam
+- **Epochs**: 100
+- **Batch Size**: 16
+- **Evaluation Metrics**: PSNR, SSIM, LPIPS
 
-## 📈 Performance Comparison
+## 📈 Performance Metrics
 
 ![Performance Comparison](images/performance_comparison.png)
 
-The proposed GAN-based method outperformed traditional methods and CNN-based baselines in all major quality metrics.
+The model demonstrates superior performance compared to traditional methods, achieving higher PSNR and SSIM scores, and lower LPIPS values.
 
-## 🖼️ Results
+## 🖼️ Sample Results
 
-### Sample Input vs Output Images
+### Input vs. Output
 
 ![Sample Images](images/sample_images.png)
 
@@ -55,25 +64,23 @@ The proposed GAN-based method outperformed traditional methods and CNN-based bas
 
 ![SAR Results](images/sar_image_results.png)
 
-## 📚 Reference
+## 📄 Reference
 
-This repository is based on the following report:
+For an in-depth understanding, refer to the comprehensive project report:
 
-> *GAN-Based Re-colorization of SAR Grayscale Images*, [Author Name(s)], 2025  
-> See full report: [GAN_based_re_colorization_of_SAR_grayscale_images.pdf](./GAN_based_re_colorization_of_SAR_grayscale_images.pdf)
+[GAN_based_re_colorization_of_SAR_grayscale_images.pdf](GAN_based_re_colorization_of_SAR_grayscale_images.pdf)
 
-## 🛠️ Setup & Usage
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Python 3.x
+- TensorFlow
+- Keras
+- NumPy
+- Matplotlib
+
+Install the required packages:
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/sar-colorization-gan.git
-cd sar-colorization-gan
-
-# Install dependencies
 pip install -r requirements.txt
-
-# Train the model
-python train.py
-
-# Test the model
-python test.py
